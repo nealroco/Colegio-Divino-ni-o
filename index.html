@@ -362,6 +362,67 @@
       font-weight: 600;
     }
 
+    /* Accesos Dropdown */
+    .accesos-dropdown {
+      position: relative;
+    }
+
+    .accesos-chevron {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.25s ease;
+    }
+
+    .accesos-dropdown.active .accesos-chevron {
+      transform: rotate(180deg);
+    }
+
+    .accesos-dropdown-panel {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 240px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow-hover);
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: var(--transition);
+      z-index: 200;
+    }
+
+    .accesos-dropdown.active .accesos-dropdown-panel {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .accesos-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .accesos-dropdown-item:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    .accesos-dropdown-item svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--primary-blue);
+    }
+
     .theme-switcher-btn {
       background: none;
       border: 1px solid var(--border-color);
@@ -1917,11 +1978,24 @@
           <svg class="moon-svg" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
           <svg class="sun-svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm10-7a1 1 0 0 1-1 1h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zM4 12a1 1 0 0 1-1 1H2a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zm14.24-6.83a1 1 0 0 1 0 1.41l-.7.71a1 1 0 0 1-1.42-1.42l.71-.7a1 1 0 0 1 1.41 0zM7.05 16.95a1 1 0 0 1 0 1.41l-.7.71a1 1 0 0 1-1.42-1.42l.71-.7c.39-.39 1.03-.39 1.41 0zm11.19 1.41a1 1 0 0 1-1.41 0l-.71-.7a1 1 0 0 1 1.42-1.42l.7.71a1 1 0 0 1 0 1.41zM7.05 7.05a1 1 0 0 1-1.41 0l-.71-.7a1 1 0 0 1 1.42-1.42l.7.71a1 1 0 0 1 0 1.41z"/></svg>
         </button>
-        <!-- Aula Virtual Externa Moodle -->
-        <a href="https://plataforma.xn--colegiodivinonio-lub.com/" target="_blank" rel="noopener" class="btn btn-blue-solid header-btn">
-          <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.86 10.5L12 6.06l8.14 4.44L12 14.94 3.86 10.5zM12 17.22l-6-3.27v2.1l6 3.27 6-3.27v-2.1l-6 3.27z"/></svg>
-          Aula Virtual
-        </a>
+        <!-- Accesos Dropdown: Aula Virtual + Plataforma Institucional -->
+        <div class="accesos-dropdown" id="accesos-dropdown">
+          <button type="button" class="btn btn-blue-solid header-btn" id="accesos-toggle-btn" aria-haspopup="true" aria-expanded="false">
+            <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            Accesos
+            <svg class="accesos-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="accesos-dropdown-panel">
+            <a href="https://plataforma.xn--colegiodivinonio-lub.com/" target="_blank" rel="noopener" class="accesos-dropdown-item">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.86 10.5L12 6.06l8.14 4.44L12 14.94 3.86 10.5zM12 17.22l-6-3.27v2.1l6 3.27 6-3.27v-2.1l-6 3.27z"/></svg>
+              Aula Virtual
+            </a>
+            <a href="http://360.xn--colegiodivinonio-lub.com/" target="_blank" rel="noopener" class="accesos-dropdown-item">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 9v2h20V9L12 3zM4 13v6H2v2h20v-2h-2v-6h-2v6h-3v-6h-2v6h-3v-6H8v6H6v-6H4z"/></svg>
+              Plataforma Institucional
+            </a>
+          </div>
+        </div>
         <!-- Soporte WhatsApp -->
         <a href="https://wa.me/573106288520" target="_blank" rel="noopener" class="btn btn-green-solid header-btn" style="background-color: #008f4c;">
           <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.817 9.817 0 0 0 12.04 2zm0 1.69c2.2 0 4.26.86 5.82 2.42a8.134 8.134 0 0 1 2.41 5.8c0 4.52-3.68 8.2-8.2 8.2-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.158 8.158 0 0 1-1.25-4.33c0-4.52 3.68-8.2 8.2-8.2zm-1.8 3.53c-.22 0-.46.05-.67.24-.2.19-.78.76-.78 1.85 0 1.09.79 2.14.9 2.3.1.15 1.56 2.38 3.78 3.34.53.23.94.37 1.26.47.53.17 1.01.14 1.39.09.42-.06 1.3-.53 1.48-1.04.18-.51.18-.95.13-1.04-.05-.09-.2-.15-.42-.26-.22-.11-1.3-.64-1.5-.71-.2-.07-.35-.11-.5.11-.15.22-.59.75-.72.9-.13.15-.26.17-.48.06a6.07 6.07 0 0 1-1.8-1.11 6.67 6.67 0 0 1-1.25-1.55c-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.03-.28-.02-.39-.05-.11-.5-1.2-.69-1.65-.19-.44-.38-.38-.5-.38z"/></svg>
@@ -3233,6 +3307,23 @@
         navMenu.style.borderBottom = '1px solid var(--border-color)';
         navMenu.style.padding = '20px';
         navMenu.style.gap = '16px';
+      }
+    });
+
+    // Accesos dropdown toggle logic
+    const accesosDropdown = document.getElementById('accesos-dropdown');
+    const accesosToggleBtn = document.getElementById('accesos-toggle-btn');
+
+    accesosToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = accesosDropdown.classList.toggle('active');
+      accesosToggleBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (accesosDropdown.classList.contains('active') && !accesosDropdown.contains(e.target)) {
+        accesosDropdown.classList.remove('active');
+        accesosToggleBtn.setAttribute('aria-expanded', 'false');
       }
     });
 
